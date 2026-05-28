@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tareas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="archivos/css/style.css">
+</head>
+
+<body>
+  <!-- MENU LATERAL -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasScrolling">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title">Menú Principal</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+  <div class="offcanvas-body d-flex flex-column gap-2">
+    <a href="/roles/Profesores/perfil.html" class="btn btn-primary text-start"><img src="/archivos/IMG/personita.webp" alt="" style="width: 25px; height: 25px;"> Perfil</a>
+    <a href="/roles/Profesores/materias.html" class="btn btn-info text-start text-white fw-bold"><img src="/archivos/IMG/reportes.webp" alt="" style="width: 25px; height: 25px;"> materias</a>
+    <a href="/roles/Profesores/calificacion.html" class="btn btn-primary text-start"><img src="/archivos/IMG/inscripcion.png" alt="" style="width: 25px; height: 25px;"> Calificación</a>
+    <a href="/roles/Profesores/observaciones.html" class="btn btn-primary text-start"><img src="/archivos/IMG/periodo escolar.png" alt="" style="width: 25px; height: 25px;"> Observaciones</a>
+    <a href="/roles/Profesores/tareas.html" class="btn btn-primary text-start"><img src="/archivos/IMG/periodo escolar.png" alt="" style="width: 25px; height: 25px;"> tareas</a>
+    <a href="/roles/Profesores/alumnos.html" class="btn btn-primary text-start"><img src="/archivos/IMG/users.png" alt="" style="width: 25px; height: 25px;"> Alumnos</a>
+      <hr>
+      <a href="../../index.html" class="btn btn-danger text-start d-block">Cerrar Sesión</a>
+    </div>
+  </div>
+
+  <!-- BARRA DE NAVEGACION -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d6eaf8;">
+    <div class="container-fluid">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling">☰</button>
+      <div style="float: right;">
+        <input type="text" placeholder="Search">
+        <button class="btn btn-outline-success">Search</button>
+        <a href="perfil.html">
+          <img src="/archivos/IMG/personita.webp" width="35" height="35" style="border-radius: 50%; background-color: white;">
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+
+<!-- CONTENIDO PRINCIPAL: LISTA DE TAREAS CLARA -->
+  <div class="container" style="max-width: 800px;">
+    
+    <!-- Botón sencillo para regresar -->
+    <a href="/roles/Alumnos/cursos.html" class="btn btn-light" style="border: 1px solid #ccc;">← Volver a Materias</a>
+    <br><br>
+
+    <h2>Tareas de la Materia</h2>
+    <br>
+
+    <!-- TAREA 1 -->
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; background-color: #fafafa;">
+      <span style="color: gray;">Ayer 4:03 p.m.</span>
+      <span style="float: right; background-color: #0b5ed7; color: white; padding: 2px 10px; border-radius: 10px; font-size: 12px;">Nuevo</span>
+      
+      <br><br>
+      <h4>Technical English (Ensayo Argumentativo)</h4>
+      <p style="color: #555;">Vencimiento 5 de junio de 2026 00:00</p>
+      
+      <!-- Boton para ver la tarea completa -->
+      <a href="/roles/Alumnos/tareas/ingles.html" class="btn btn-outline-dark">Ver tarea</a>
+      
+      <hr>
+      <!-- Espacio para simular comentarios -->
+      <span style="color: gray;">Responder...</span>
+    </div>
+    <button class="btn btn-primary" style="width: 200px;">Publicar en el canal</button>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <!-- BULMA -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <link rel="stylesheet" href="archivos/css/style.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Inscribir Alumno</title>
+
+  <style>
+
+    html,
+    body{
+      min-height: 100vh;
+      background-color: white !important;
+      margin: 0;
+      padding: 0;
+      color: black;
+    }
+
+    /* NAVBAR */
+    .navbar-custom{
+      background-color: #d6eaf8;
+      padding: 10px 20px;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width: 280px;
+      height: 100vh;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      transition: 0.3s;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 2px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active{
+      left: 0;
+    }
+
+    /* OVERLAY */
+    .overlay{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active{
+      display: block;
+    }
+
+    /* INPUTS */
+    .input,
+    .select select{
+      background-color: white !important;
+      color: black !important;
+      border: 2px solid black !important;
+      border-radius: 10px;
+      box-shadow: none !important;
+    }
+
+    .input::placeholder{
+      color: gray;
+    }
+
+    /* SEARCH */
+    .search-input{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid #ccc !important;
+    }
+
+    /* PERFIL */
+    .perfil{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      margin-left: 15px;
+    }
+
+    /* TITULO */
+    .titulo{
+      background-color: #00bcd4;
+      color: white !important;
+      padding: 10px;
+      font-weight: bold;
+      width: 80%;
+      margin: auto;
+    }
+
+    /* LETRAS */
+    h1,h2,h3,h4,h5,h6,p,label,span,a{
+      color: black !important;
+    }
+
+    /* CONTENIDO */
+    .contenido{
+      padding: 40px 20px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+
+      <h5 class="title is-5">Menú Principal</h5>
+
+      <button class="delete" id="closeMenu"></button>
+
+    </div>
+
+    <div class="buttons">
+
+      <a href="perfil.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Perfil
+      </a>
+
+      <a href="altabajauser.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/users.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Alta o baja de usuarios
+      </a>
+
+      <!-- RESALTADO -->
+      <a href="inscripcion.html"
+        class="button is-info is-fullwidth has-text-white has-text-weight-bold is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/inscripcion.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Inscripción
+      </a>
+
+      <a href="reportes.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/reportes.webp"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Reportes
+      </a>
+
+      <a href="periodo.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/periodo escolar.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Periodo Escolar
+      </a>
+
+      <hr>
+
+      <a href="../../index.html"
+        class="button is-danger is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/cerrar sesión.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Cerrar Sesión
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- BARRA DE NAVEGACION -->
+  <nav class="navbar navbar-custom">
+
+    <div class="navbar-brand">
+
+      <button class="button is-link"
+        id="openMenu">
+
+        <img src="/archivos/IMG/menu.png"
+          alt=""
+          style="width: 25px; height: 25px;">
+
+      </button>
+
+    </div>
+
+    <div class="navbar-end is-flex is-align-items-center">
+
+      <form class="is-flex">
+
+        <input class="input search-input mr-2"
+          type="search"
+          placeholder="Search">
+
+        <button class="button has-background-white has-text-black"
+          type="submit">
+
+          Search
+
+        </button>
+
+      </form>
+
+      <a href="perfil.html">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          class="perfil">
+
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="contenido">
+
+    <!-- TITULO -->
+    <div class="has-text-centered">
+      <h3 class="title is-4 titulo">
+        NUEVA INSCRIPCIÓN
+      </h3>
+    </div>
+
+    <br><br>
+
+    <!-- FORMULARIO -->
+    <div style="width: 60%; margin: auto;">
+
+      <h5 class="title is-5">ID DEL ALUMNO</h5>
+
+      <input type="text"
+        class="input"
+        placeholder="Ej. 10293 o María López">
+
+      <br><br>
+
+      <h5 class="title is-5">SELECCIONA LA MATERIA</h5>
+
+      <!-- LISTA -->
+      <div class="select is-fullwidth">
+
+        <select>
+
+          <option>ELECTRONICA (11:00 - 12:00) - 4 Créditos</option>
+
+          <option>ESPAÑOL (13:00 - 14:00) - 5 Créditos</option>
+
+          <option>MATEMATICAS (16:00 - 17:00) - 4 Créditos</option>
+
+          <option>PROGRAMACION (09:00 - 10:00) - 5 Créditos</option>
+
+          <option>ROBOTICA (10:00 - 11:00) - 4 Créditos</option>
+
+        </select>
+
+      </div>
+
+      <br><br><br>
+
+      <!-- BOTON -->
+      <div class="has-text-centered">
+
+        <a href="inscripcion.html"
+          class="button is-link is-medium">
+
+          <b>GUARDAR INSCRIPCIÓN</b>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT MENU -->
+  <script>
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    document.getElementById("openMenu").addEventListener("click", () => {
+      sidebar.classList.add("active");
+      overlay.classList.add("active");
+    });
+
+    document.getElementById("closeMenu").addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+  </script>
+
+</body>
+
+</html>

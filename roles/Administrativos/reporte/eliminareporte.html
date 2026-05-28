@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <!-- BULMA -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <link rel="stylesheet" href="archivos/css/style.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Eliminar Reporte</title>
+
+  <style>
+
+    html,
+    body{
+      min-height: 100vh;
+      background-color: white;
+      color: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* NAVBAR */
+    .navbar-custom{
+      background-color: #d6eaf8;
+      padding: 10px 20px;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width: 280px;
+      height: 100vh;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      transition: 0.3s;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 2px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active{
+      left: 0;
+    }
+
+    /* OVERLAY */
+    .overlay{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active{
+      display: block;
+    }
+
+    /* PERFIL */
+    .perfil{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      margin-left: 15px;
+    }
+
+    /* SEARCH */
+    .search-input{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid #ccc;
+    }
+
+    /* INPUTS */
+    .input{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid gray;
+      border-radius: 8px;
+    }
+
+    /* LETRAS */
+    h1,h2,h3,h4,h5,h6,p,label,span,a,b{
+      color: black;
+    }
+
+    /* TITULOS AZULES */
+    .titulo-filtro{
+      background-color: #0b5ed7;
+      color: white !important;
+      border-radius: 15px;
+      padding: 8px;
+      width: 80%;
+      margin: auto;
+      font-weight: bold;
+    }
+
+    /* BOTON */
+    .boton-eliminar{
+      padding: 15px 50px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* CONTENIDO */
+    .contenido{
+      padding-bottom: 100px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+
+      <h5 class="title is-5">Menú Principal</h5>
+
+      <button class="delete" id="closeMenu"></button>
+
+    </div>
+
+    <div class="buttons">
+
+      <a href="perfil.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Perfil
+      </a>
+
+      <a href="altabajauser.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/users.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Alta o baja de usuarios
+      </a>
+
+      <a href="inscripcion.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/inscripcion.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Inscripción
+      </a>
+
+      <!-- ACTIVO -->
+      <a href="reportes.html"
+        class="button is-info is-fullwidth has-text-white has-text-weight-bold is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/reportes.webp"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Generar Reportes
+      </a>
+
+      <a href="periodo.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/periodo escolar.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Periodos Escolares
+      </a>
+
+      <hr>
+
+      <a href="../../index.html"
+        class="button is-danger is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/cerrar sesión.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Cerrar Sesión
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-custom">
+
+    <div class="navbar-brand">
+
+      <button class="button is-link"
+        id="openMenu">
+
+        <img src="/archivos/IMG/menu.png"
+          alt=""
+          style="width: 25px; height: 25px;">
+
+      </button>
+
+    </div>
+
+    <div class="navbar-end is-flex is-align-items-center">
+
+      <form class="is-flex">
+
+        <input class="input search-input mr-2"
+          type="search"
+          placeholder="Search">
+
+        <button class="button is-success has-background-white has-text-black"
+          type="submit">
+
+          Search
+
+        </button>
+
+      </form>
+
+      <a href="perfil.html">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          class="perfil">
+
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- CONTENIDO -->
+  <div class="container mt-5 contenido">
+
+    <!-- TITULO -->
+    <div class="has-text-centered">
+
+      <h3 style="background-color: #00bcd4; color: white; padding: 10px; font-weight: bold; width: 80%; margin: auto;">
+
+        ELIMINAR REPORTES
+
+      </h3>
+
+    </div>
+
+    <br><br>
+
+    <!-- FILTROS -->
+    <div class="columns px-5 has-text-centered">
+
+      <!-- PERIODO -->
+      <div class="column">
+
+        <h5 class="titulo-filtro">
+
+          PERIODO ESCOLAR
+
+        </h5>
+
+        <br>
+
+        <input type="text"
+          class="input"
+          style="width: 80%;">
+
+      </div>
+
+      <!-- TIPO -->
+      <div class="column">
+
+        <h5 class="titulo-filtro">
+
+          TIPO DE REPORTE
+
+        </h5>
+
+        <br>
+
+        <input type="text"
+          class="input"
+          style="width: 80%;">
+
+      </div>
+
+    </div>
+
+    <!-- ESPACIO -->
+    <br><br><br><br><br>
+
+    <!-- BOTON -->
+    <div class="has-text-centered">
+
+      <a href="/roles/Administrativos/reportes.html"
+        class="button is-link boton-eliminar">
+
+        ELIMINAR REPORTE
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    document.getElementById("openMenu").addEventListener("click", () => {
+      sidebar.classList.add("active");
+      overlay.classList.add("active");
+    });
+
+    document.getElementById("closeMenu").addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Lista de Tareas</title>
+
+  <!-- BULMA -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <link rel="stylesheet"
+    href="archivos/css/style.css">
+
+  <style>
+    body {
+      background-color: #ffffff;
+      min-height: 100vh;
+      color: #000000;
+    }
+
+    /* TEXTO NEGRO */
+    body,
+    .title,
+    .subtitle,
+    p,
+    span,
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    label {
+      color: #000000;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #d6eaf8;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 260px;
+      height: 100vh;
+      background-color: #f5f5f5;
+      position: fixed;
+      left: -270px;
+      top: 0;
+      transition: 0.3s;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    /* OVERLAY */
+    .overlay {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background: rgba(0, 0, 0, 0.4);
+      top: 0;
+      left: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .menu-btn {
+      cursor: pointer;
+    }
+
+    /* TARJETA */
+    .task-card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #fafafa;
+    }
+
+    /* PERFIL */
+    .profile-img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    /* TAG */
+    .tag-new {
+      border-radius: 20px;
+    }
+
+    /* INPUT */
+    .input {
+      color: #000000 !important;
+      background-color: #ffffff !important;
+    }
+
+    /* BOTONES */
+    .button.is-primary,
+    .button.is-info,
+    .button.is-danger,
+    .button.is-success,
+    .tag.is-primary {
+      color: #ffffff !important;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar"
+    id="sidebar">
+
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+
+      <h4 class="title is-5">
+        Menú Principal
+      </h4>
+
+      <button class="delete"
+        onclick="toggleSidebar()"></button>
+
+    </div>
+
+    <div class="buttons are-fullwidth">
+
+      <a href="/roles/Alumnos/perfil.html"
+        class="button is-primary is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/personita.webp"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Perfil
+      </a>
+
+      <a href="/roles/Alumnos/chat.html"
+        class="button is-primary is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/chat.png"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Chat
+      </a>
+
+      <a href="/roles/Alumnos/horario.html"
+        class="button is-primary is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/horario.png"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Horario
+      </a>
+
+      <a href="/roles/Alumnos/historial.html"
+        class="button is-primary is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/historial academico.png"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Historial Académico
+      </a>
+
+      <a href="/roles/Alumnos/cursos.html"
+        class="button is-info is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/mis cursos.png"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Mis Cursos
+      </a>
+
+      <a href="/roles/Alumnos/recursos.html"
+        class="button is-primary is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/recursos.png"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Recursos
+      </a>
+
+      <a href="/roles/Alumnos/tareas.html"
+        class="button is-primary is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/tareas.png"
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Tareas
+      </a>
+
+      <hr>
+
+      <a href="../../index.html"
+        class="button is-danger is-justify-content-flex-start">
+
+        Cerrar Sesión
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay"
+    id="overlay"
+    onclick="toggleSidebar()"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar px-4 py-3">
+
+    <div class="navbar-brand">
+
+      <a class="navbar-item menu-btn"
+        onclick="toggleSidebar()">
+
+        ☰
+
+      </a>
+
+    </div>
+
+    <div class="navbar-menu is-active">
+
+      <div class="navbar-end is-align-items-center">
+
+        <!-- SEARCH -->
+        <div class="navbar-item">
+
+          <div class="field has-addons">
+
+            <div class="control">
+
+              <input class="input"
+                type="text"
+                placeholder="Search">
+
+            </div>
+
+            <div class="control">
+
+              <button class="button is-success">
+                Search
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PERFIL -->
+        <div class="navbar-item">
+
+          <a href="perfil.html">
+
+            <img src="/archivos/IMG/personita.webp"
+              class="profile-img">
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- CONTENIDO -->
+  <section class="section">
+
+    <div class="container"
+      style="max-width: 800px;">
+
+      <!-- VOLVER -->
+      <a href="/roles/Alumnos/cursos.html"
+        class="button is-light mb-5"
+        style="border:1px solid #ccc;">
+
+        ← Volver a Materias
+
+      </a>
+
+      <h2 class="title is-3">
+        Tareas de la Materia
+      </h2>
+
+      <!-- TAREA -->
+      <div class="task-card">
+
+        <div class="is-flex is-justify-content-space-between is-align-items-center">
+
+          <span class="has-text-grey">
+            Ayer 4:03 p.m.
+          </span>
+
+          <span class="tag is-primary tag-new">
+            Nuevo
+          </span>
+
+        </div>
+
+        <br>
+
+        <h4 class="title is-4">
+          Ética en las TIC (Dilemas Morales)
+        </h4>
+
+        <p class="has-text-grey mb-4">
+          Vence el 12 de junio de 2026 12:00
+        </p>
+
+        <!-- BOTON -->
+        <a href="/roles/Alumnos/tareas/etica.html"
+          class="button is-dark is-outlined">
+
+          Ver tarea
+
+        </a>
+
+        <hr>
+
+        <span class="has-text-grey">
+          Responder...
+        </span>
+
+      </div>
+
+      <!-- BOTON FINAL -->
+      <button class="button is-primary"
+        style="width:200px;">
+
+        Publicar en el canal
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+
+    function toggleSidebar() {
+
+      document.getElementById("sidebar")
+        .classList.toggle("active");
+
+      document.getElementById("overlay")
+        .classList.toggle("active");
+    }
+
+  </script>
+
+</body>
+
+</html>

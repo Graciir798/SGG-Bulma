@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Baja de Usuarios</title>
+
+  <!-- BULMA -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <link rel="stylesheet"
+    href="archivos/css/style.css">
+
+  <style>
+
+    html,
+    body{
+      background-color: white;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* NAVBAR */
+    .navbar-custom{
+      background-color: #d6eaf8;
+      padding: 10px 20px;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width: 280px;
+      height: 100vh;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      transition: 0.3s;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 2px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active{
+      left: 0;
+    }
+
+    /* OVERLAY */
+    .overlay{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active{
+      display: block;
+    }
+
+    /* PERFIL */
+    .perfil{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      margin-left: 15px;
+    }
+
+    /* BUSCADOR */
+    .search-input{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid #ccc;
+    }
+
+    /* TABLA */
+    .table{
+      background-color: white;
+      border: 1px solid black;
+    }
+
+    .table th{
+      background-color: #f2f2f2 !important;
+      color: black !important;
+      border: 1px solid black !important;
+      text-align: center !important;
+    }
+
+    .table td{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid black !important;
+      vertical-align: middle !important;
+    }
+
+    /* CHECKBOX */
+    .checkbox-grande{
+      width: 22px;
+      height: 22px;
+    }
+
+    /* TITULO */
+    .titulo{
+      background-color: blue;
+      color: white;
+      padding: 12px;
+      font-weight: bold;
+      width: 80%;
+      margin: auto;
+    }
+
+    /* BOTON */
+    .boton-baja{
+      border: 2px solid black;
+      padding: 12px 50px;
+      font-weight: bold;
+      color: black;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay"
+    id="overlay"></div>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar"
+    id="sidebar">
+
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+
+      <h5 class="title is-5">Menú Principal</h5>
+
+      <button class="delete"
+        id="closeMenu"></button>
+
+    </div>
+
+    <div class="buttons">
+
+      <a href="perfil.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Perfil
+
+      </a>
+
+      <!-- ACTIVO -->
+      <a href="altabajauser.html"
+        class="button is-info is-fullwidth has-text-white has-text-weight-bold is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/users.png"
+          alt=""
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Alta o baja de usuarios
+
+      </a>
+
+      <a href="inscripcion.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/inscripcion.png"
+          alt=""
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Inscripción
+
+      </a>
+
+      <a href="reportes.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/reportes.webp"
+          alt=""
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Reportes
+
+      </a>
+
+      <a href="periodo.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/periodo escolar.png"
+          alt=""
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Periodo Escolar
+
+      </a>
+
+      <hr>
+
+      <a href="../../index.html"
+        class="button is-danger is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/cerrar sesión.png"
+          alt=""
+          style="width:25px; height:25px; margin-right:10px;">
+
+        Cerrar Sesión
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-custom">
+
+    <div class="navbar-brand">
+
+      <button class="button is-link"
+        id="openMenu">
+
+        <img src="/archivos/IMG/menu.png"
+          alt=""
+          style="width:25px; height:25px;">
+
+      </button>
+
+    </div>
+
+    <div class="navbar-end is-flex is-align-items-center">
+
+      <form class="is-flex">
+
+        <input class="input search-input mr-2"
+          type="search"
+          placeholder="Search">
+
+        <button class="button is-success has-background-white has-text-black"
+          type="submit">
+
+          Search
+
+        </button>
+
+      </form>
+
+      <a href="perfil.html">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          class="perfil">
+
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- CONTENIDO -->
+  <section class="section">
+
+    <div class="container">
+
+      <!-- TITULO -->
+      <div class="has-text-centered mb-6">
+
+        <h3 class="title is-4 titulo">
+
+          BAJA DE USUARIOS
+
+        </h3>
+
+      </div>
+
+      <!-- TABLA -->
+      <div class="table-container">
+
+        <table class="table is-fullwidth has-text-centered">
+
+          <thead>
+
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Rol</th>
+              <th>CORREO ELECTRONICO</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>
+                <input type="checkbox"
+                  checked
+                  class="checkbox-grande">
+              </td>
+
+              <td>12345</td>
+              <td>Steven</td>
+              <td>Docente</td>
+              <td>maestro@itvh.edu.mx</td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="checkbox"
+                  class="checkbox-grande">
+              </td>
+
+              <td>67890</td>
+              <td>Dina</td>
+              <td>Estudiante</td>
+              <td>estudiante@itvh.edu.mx</td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="checkbox"
+                  class="checkbox-grande">
+              </td>
+
+              <td>10293</td>
+              <td>Isabel</td>
+              <td>Docente</td>
+              <td>teacher@itvh.edu.mx</td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="checkbox"
+                  class="checkbox-grande">
+              </td>
+
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <br>
+
+      <!-- BOTON -->
+      <div class="has-text-centered">
+
+        <a href="/roles/Administrativos/altabajauser.html"
+          class="button is-light boton-baja">
+
+          DAR DE BAJA
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    document.getElementById("openMenu").addEventListener("click", () => {
+      sidebar.classList.add("active");
+      overlay.classList.add("active");
+    });
+
+    document.getElementById("closeMenu").addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+  </script>
+
+</body>
+
+</html>

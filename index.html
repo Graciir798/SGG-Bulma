@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Sistema de Gestión Global</title>
+
+  <!-- BULMA -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <style>
+
+    html,
+    body{
+      background-color: #f5f6fa;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* CONTENEDOR LOGIN */
+    .login-box{
+      background-color: white;
+      width: 100%;
+      max-width: 450px;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+    }
+
+    /* LOGO */
+    .logo{
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    /* TITULOS */
+    .titulo{
+      font-size: 32px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .subtitulo{
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+   
+/* INPUTS */
+.input{
+  background-color: white !important;
+  color: black !important; /* LETRAS NEGRAS */
+  border-radius: 12px !important;
+  border: 2px solid #dcdcdc !important;
+  box-shadow: none !important;
+}
+
+.input::placeholder{
+  color: black !important;
+}
+
+.input:focus{
+  background-color: white !important;
+  color: black !important;
+  border-color: #3273dc !important;
+  box-shadow: none !important;
+}
+
+/* LABELS */
+.label{
+  color: black !important;
+  font-weight: bold;
+}
+
+
+    /* BOTON */
+    .boton-login{
+      width: 60%;
+      font-weight: bold;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    /* FOOTER */
+    .footer-text{
+      margin-top: 30px;
+      color: gray;
+      font-size: 14px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-box">
+
+    <!-- LOGO -->
+    <div class="has-text-centered">
+
+      <img src="archivos/IMG/logo sgg.png"
+        alt="Logo"
+        class="logo">
+
+    </div>
+
+    <!-- TITULOS -->
+    <div class="has-text-centered">
+
+      <h1 class="titulo">
+        Bienvenido
+      </h1>
+
+      <h2 class="subtitulo">
+        al Sistema de Gestión Global
+      </h2>
+
+    </div>
+
+    <!-- FORMULARIO -->
+    <form id="loginForm">
+
+      <!-- USUARIO -->
+      <div class="field">
+
+        <label class="label">
+          NOMBRE DE USUARIO
+        </label>
+
+        <div class="control">
+
+          <input type="email"
+            class="input"
+            id="username"
+            required>
+
+        </div>
+
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+
+        <label class="label">
+          CONTRASEÑA
+        </label>
+
+        <div class="control">
+
+          <input type="password"
+            class="input"
+            id="password"
+            required>
+
+        </div>
+
+      </div>
+
+      <!-- CHECKBOX -->
+      <div class="field">
+
+        <label class="checkbox">
+
+          <input type="checkbox">
+
+          Recuérdame
+
+        </label>
+
+      </div>
+
+      <br>
+
+      <!-- BOTON -->
+      <div class="has-text-centered">
+
+        <button type="submit"
+          class="button is-link boton-login">
+
+          Iniciar sesión
+
+        </button>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="has-text-centered">
+
+        <p class="footer-text">
+          &copy; 2022–2026
+        </p>
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- SCRIPT LOGIN -->
+  <script>
+
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function(event){
+
+      event.preventDefault();
+
+      const usuario = document.getElementById('username').value.toLowerCase();
+
+      const password = document.getElementById('password').value;
+
+      // ALUMNO
+      if(usuario === 'alumno@itvh.edu.mx' && password === '1234'){
+
+        window.location.href = 'roles/Alumnos/perfil.html';
+
+      }
+
+      // DOCENTE
+      else if(usuario === 'maestro@itvh.edu.mx' && password === '1234'){
+
+        window.location.href = 'roles/Profesores/perfil.html';
+
+      }
+
+      // ADMIN
+      else if(usuario === 'admin@itvh.edu.mx' && password === '1234'){
+
+        window.location.href = 'roles/Administrativos/perfil.html';
+
+      }
+
+      // ERROR
+      else{
+
+        alert('Usuario o contraseña incorrectos');
+
+      }
+
+    });
+
+  </script>
+
+</body>
+
+</html>

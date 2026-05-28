@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BULMA -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="archivos/css/style.css">
+
+    <title>Vista de tareas</title>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            color: #000000;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #d6eaf8;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #f5f5f5;
+            position: fixed;
+            left: -270px;
+            top: 0;
+            transition: 0.3s;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.4);
+            top: 0;
+            left: 0;
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .menu-btn {
+            cursor: pointer;
+        }
+
+        .task-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .points-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #dbdbdb;
+        }
+
+        .gray-text {
+            color: gray;
+        }
+
+        .input {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+        }
+
+        .title,
+        .subtitle,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #000000;
+        }
+
+        .button.is-primary,
+        .button.is-info,
+        .button.is-danger,
+        .button.is-success {
+            color: #ffffff !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+
+        <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+
+            <h4 class="title is-5">
+                Menú Principal
+            </h4>
+
+            <button class="delete"
+                onclick="toggleSidebar()"></button>
+
+        </div>
+
+        <div class="buttons are-fullwidth">
+
+            <a href="perfil.html"
+                class="button is-primary is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/personita.webp"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Perfil
+            </a>
+
+            <a href="chat.html"
+                class="button is-primary is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/chat.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Chat
+            </a>
+
+            <a href="horario.html"
+                class="button is-primary is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/horario.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Horario
+            </a>
+
+            <a href="historial.html"
+                class="button is-primary is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/historial academico.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Historial Académico
+            </a>
+
+            <a href="cursos.html"
+                class="button is-primary is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/mis cursos.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Mis Cursos
+            </a>
+
+            <a href="recursos.html"
+                class="button is-primary is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/recursos.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Recursos
+            </a>
+
+            <!-- ACTIVO -->
+            <a href="tareas.html"
+                class="button is-info is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/tareas.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Tareas
+            </a>
+
+            <hr>
+
+            <a href="../../index.html"
+                class="button is-danger is-justify-content-flex-start">
+
+                <img src="/archivos/IMG/cerrar sesión.png"
+                    style="width:25px; height:25px; margin-right:10px;">
+
+                Cerrar Sesión
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay"
+        id="overlay"
+        onclick="toggleSidebar()"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar px-4 py-3">
+
+        <div class="navbar-brand">
+
+            <a class="navbar-item menu-btn"
+                onclick="toggleSidebar()">
+
+                <img src="/archivos/IMG/menu.png"
+                    style="width:25px; height:25px;">
+
+            </a>
+
+        </div>
+
+        <div class="navbar-menu is-active">
+
+            <div class="navbar-end is-align-items-center">
+
+                <!-- BUSCADOR -->
+                <div class="navbar-item">
+
+                    <form>
+                        <div class="field has-addons">
+
+                            <div class="control">
+                                <input
+                                    class="input"
+                                    type="search"
+                                    placeholder="Search">
+                            </div>
+
+                            <div class="control">
+                                <button class="button is-success">
+                                    Search
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+                <!-- PERFIL -->
+                <div class="navbar-item">
+
+                    <a href="/roles/Alumnos/perfil.html">
+
+                        <img src="/archivos/IMG/personita.webp"
+                            style="width:40px; height:40px; border-radius:50%; background:white;">
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- CONTENIDO -->
+    <section class="section">
+
+        <div class="container">
+
+            <!-- BOTONES SUPERIORES -->
+            <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
+
+                <a href="/roles/Alumnos/tareas.html"
+                    class="button is-light">
+
+                    ← Volver
+
+                </a>
+
+                <div class="is-flex is-align-items-center">
+
+                    <span class="gray-text mr-3">
+                        No entregada
+                    </span>
+
+                    <button class="button is-success ml-3">
+                        Entregar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- COLUMNAS -->
+            <div class="columns">
+
+                <!-- IZQUIERDA -->
+                <div class="column is-9">
+
+                    <div class="task-card">
+
+                        <h2 class="title is-3">
+                            Technical English (Ensayo Argumentativo)
+                        </h2>
+
+                        <p class="gray-text">
+                            Vence el 5 de junio de 2026 00:00
+                            <br>
+                            Tema 1
+                        </p>
+
+                        <hr>
+
+                        <h4 class="title is-5">
+                            Instrucciones
+                        </h4>
+
+                        <p style="text-align: justify;">
+
+                            Lee cuidadosamente el artículo
+                            "The Digital Age and Global Communication"
+                            y a partir de tu lectura, redacta un ensayo
+                            argumentativo completamente en inglés donde
+                            expongas los pros y contras del impacto de
+                            las redes sociales en la comunicación interpersonal.
+
+                            Tu texto debe incluir una introducción clara
+                            que presente tu postura, al menos tres párrafos
+                            de desarrollo con argumentos sólidos que respalden
+                            tus ideas, y una conclusión que resuma los puntos clave.
+
+                        </p>
+
+                        <br>
+
+                        <h4 class="title is-5">
+                            Mi trabajo
+                        </h4>
+
+                        <!-- INPUT FILE -->
+                        <div class="field">
+
+                            <div class="file has-name is-fullwidth">
+
+                                <label class="file-label">
+
+                                    <input class="file-input"
+                                        type="file">
+
+                                    <span class="file-cta">
+
+                                        <span class="file-label">
+                                            Seleccionar archivo
+                                        </span>
+
+                                    </span>
+
+                                    <span class="file-name">
+                                        Ningún archivo seleccionado
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- DERECHA -->
+                <div class="column is-3">
+
+                    <div class="points-box">
+
+                        <h4 class="title is-5">
+                            Puntos
+                        </h4>
+
+                        <p class="gray-text">
+                            100 puntos posibles
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SCRIPT -->
+    <script>
+
+        function toggleSidebar() {
+
+            document.getElementById("sidebar")
+                .classList.toggle("active");
+
+            document.getElementById("overlay")
+                .classList.toggle("active");
+        }
+
+    </script>
+
+</body>
+
+</html>

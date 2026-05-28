@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <!-- BULMA -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <link rel="stylesheet" href="archivos/css/style.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Modificar Reporte</title>
+
+  <style>
+
+    body{
+      background-color: white;
+      color: black;
+    }
+
+    /* NAVBAR */
+    .navbar-custom{
+      background-color: #d6eaf8;
+      padding: 10px 20px;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width: 280px;
+      height: 100vh;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      transition: 0.3s;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 2px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active{
+      left: 0;
+    }
+
+    /* OVERLAY */
+    .overlay{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active{
+      display: block;
+    }
+
+    /* PERFIL */
+    .perfil{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      margin-left: 15px;
+    }
+
+    /* SEARCH */
+    .search-input{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid #ccc;
+    }
+
+    /* INPUTS */
+    .input{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid gray;
+    }
+
+    /* TABLA BLANCA */
+    .table{
+      background-color: white !important;
+      border: 1px solid black;
+    }
+
+    .table th,
+    .table td{
+      background-color: white !important;
+      color: black !important;
+      border: 1px solid black !important;
+    }
+
+    /* NOMBRE NEGRO */
+    .nombre{
+      color: black !important;
+      font-weight: bold;
+    }
+
+    /* LETRAS */
+    h1,h2,h3,h4,h5,h6,p,label,span,a,b{
+      color: black;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar" id="sidebar">
+
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+
+      <h5 class="title is-5">Menú Principal</h5>
+
+      <button class="delete" id="closeMenu"></button>
+
+    </div>
+
+    <div class="buttons">
+
+      <a href="perfil.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Perfil
+      </a>
+
+      <a href="altabajauser.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/users.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Alta o baja de usuarios
+      </a>
+
+      <a href="inscripcion.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/inscripcion.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Inscripción
+      </a>
+
+      <a href="reportes.html"
+        class="button is-info is-fullwidth has-text-white has-text-weight-bold is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/reportes.webp"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Generar Reportes
+      </a>
+
+      <a href="periodo.html"
+        class="button is-link is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/periodo escolar.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Periodos Escolares
+      </a>
+
+      <hr>
+
+      <a href="../../index.html"
+        class="button is-danger is-fullwidth is-justify-content-flex-start">
+
+        <img src="/archivos/IMG/cerrar sesión.png"
+          alt=""
+          style="width: 25px; height: 25px; margin-right: 10px;">
+
+        Cerrar Sesión
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- BARRA -->
+  <nav class="navbar navbar-custom">
+
+    <div class="navbar-brand">
+
+      <button class="button is-link"
+        id="openMenu">
+
+        <img src="/archivos/IMG/menu.png"
+          alt=""
+          style="width: 25px; height: 25px;">
+
+      </button>
+
+    </div>
+
+    <div class="navbar-end is-flex is-align-items-center">
+
+      <form class="is-flex">
+
+        <input class="input search-input mr-2"
+          type="search"
+          placeholder="Search">
+
+        <button class="button is-success has-background-white has-text-black"
+          type="submit">
+
+          Search
+
+        </button>
+
+      </form>
+
+      <a href="perfil.html">
+
+        <img src="/archivos/IMG/personita.webp"
+          alt=""
+          class="perfil">
+
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- CONTENIDO -->
+  <div class="container mt-5">
+
+    <div class="has-text-centered">
+
+      <h3 style="background-color: #00bcd4; color: white; padding: 10px; font-weight: bold; width: 80%; margin: auto;">
+
+        MODIFICAR REPORTES
+
+      </h3>
+
+    </div>
+
+    <br>
+
+    <!-- FILTROS -->
+    <div class="columns px-5 has-text-centered">
+
+      <div class="column">
+
+        <h5 style="background-color: #0b5ed7; color: white; border-radius: 15px; padding: 5px; width: 80%; margin: auto;">
+
+          PERIODO ESCOLAR
+
+        </h5>
+
+        <br>
+
+        <input type="text"
+          class="input"
+          style="width: 80%;">
+
+      </div>
+
+      <div class="column">
+
+        <h5 style="background-color: #0b5ed7; color: white; border-radius: 15px; padding: 5px; width: 80%; margin: auto;">
+
+          TIPO DE REPORTE
+
+        </h5>
+
+        <br>
+
+        <input type="text"
+          class="input"
+          style="width: 80%;">
+
+      </div>
+
+    </div>
+
+    <br><br>
+
+    <!-- BOLETA -->
+    <div style="width: 60%; margin: auto; font-size: 14px;">
+
+      <div class="has-text-centered">
+
+        <h4 class="title is-4 nombre">
+
+          Mariana López García
+
+        </h4>
+
+      </div>
+
+      <p><b>Matrícula:</b> 20231245</p>
+
+      <p><b>Periodo escolar:</b> Agosto Diciembre 2025</p>
+
+      <p><b>Programa académico:</b> Licenciatura en Psicología</p>
+
+      <p><b>Semestre:</b> 5°</p>
+
+      <p><b>Estado:</b> Activo</p>
+
+      <b>Periodos Escolares</b>
+
+      <div class="table-container">
+
+        <table class="table is-fullwidth has-text-centered">
+
+          <thead>
+
+            <tr>
+              <th>Clave</th>
+              <th>Materia</th>
+              <th>Calificación</th>
+              <th>Observaciones</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>PS201</td>
+              <td>Psicología Cognitiva</td>
+              <td>9.0</td>
+              <td>Aprobado</td>
+            </tr>
+
+            <tr>
+              <td>PS302</td>
+              <td>Estadística Aplicada</td>
+              <td>8.5</td>
+              <td>Aprobado</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <p><b>Promedio general:</b> 8.8</p>
+
+      <p><b>Créditos acumulados:</b> 26</p>
+
+    </div>
+
+    <!-- BOTON -->
+    <br>
+
+    <div class="has-text-centered">
+
+      <a href="/roles/Administrativos/reportes.html"
+        class="button is-link is-medium">
+
+        <b>MODIFICAR<br>REPORTE</b>
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    document.getElementById("openMenu").addEventListener("click", () => {
+      sidebar.classList.add("active");
+      overlay.classList.add("active");
+    });
+
+    document.getElementById("closeMenu").addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+  </script>
+
+</body>
+
+</html>
